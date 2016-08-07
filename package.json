@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "PORT=3000 nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/TheBeff/acme-categories-sql/issues"
   },
-  "homepage": "https://github.com/TheBeff/acme-categories-sql#readme"
+  "homepage": "https://github.com/TheBeff/acme-categories-sql#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "path": "^0.12.7",
+    "pg": "^6.0.3",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
+  }
 }
