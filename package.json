@@ -21,6 +21,7 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "method-override": "^2.3.6",
     "path": "^0.12.7",
     "pg": "^6.0.3",
     "swig": "^1.4.2"

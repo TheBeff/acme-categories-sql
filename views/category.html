@@ -1,0 +1,23 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="container">
+	<ul class="list-group">
+		{% for product in products %}
+		<li class="list-group-item">
+		  {{ product.name }}
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<form method="POST" action='/categories/{{ categoryId }}/products'>
+	<div class="form-group">
+		<label>Product Name</label>
+		<input name="name" class="form-control" />
+	</div>
+	<button class="btn btn-primary">Add Product</button>
+</form>
+
+{% endblock %}
