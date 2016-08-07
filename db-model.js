@@ -26,7 +26,7 @@ module.exports = {
 	getProducts: function(categoryID, cb){
 		client.connect(function(err, conn){
 			if(err) throw err;
-			conn.query('SELECT name FROM products WHERE categoryID = $1', [categoryID], function(err, results){
+			conn.query('SELECT name, id FROM products WHERE categoryID = $1', [categoryID], function(err, results){
 				if (err) throw err;
 				cb(results.rows);
 			});
@@ -38,9 +38,29 @@ module.exports = {
 			if (err) throw err;
 			conn.query('INSERT INTO products (name, categoryID) VALUES ($1, $2)', [name, categoryID], function(err, result){
 				if (err) throw err;
-				console.log(result);
 				console.log("Added " + name);
 				cb(result.rows);
+			});
+		});
+	},
+
+	deleteCategory: function(categoryID){
+		client.connect(function(err, conn){
+			if(err) throw err;
+			conn.query('DELETE FROM products WHERE categoryID = $1', [categoryID], function(err, result){
+				if(err) throw err;
+			});
+			conn.query('DELETE FROM categories WHERE id = $1', [categoryID], function(err, result){
+				if(err) throw err;
+			});
+		});
+	},
+
+	deleteProduct: function(productId){
+		client.connect(function(err, conn){
+			if(err) throw err;
+			conn.query('DELETE FROM products WHERE id = $1', [productId], function(err, result){
+				if(err) throw err;
 			});
 		});
 	}

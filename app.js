@@ -25,7 +25,7 @@ app.get('/', function(req, res, next){
 		conn.query('SELECT * FROM categories', [], function(err, results){
 			if(err) return res.send(err);
 			var category = results.rows;
-			res.render('index', {title: 'Categories', categories: category});
+			res.render('index', {title: 'Home', categories: category});
 		})
 	})
 });
