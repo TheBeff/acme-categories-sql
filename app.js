@@ -5,14 +5,24 @@ swig.setDefaults( {cache: false} );
 var path = require('path');
 var bodyParser = require('body-parser');
 var db = require('./index');
+var categoryRoutes = require('./routes/categories');
 
 app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
 
 app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/categories', categoryRoutes);
 
 module.exports = app;
 
 app.get('/', function(req, res, next){
-	res.send("hello world");
+	db.connect(function(err, conn){
+		if(err) console.log(err);
+		conn.query('SELECT * FROM categories', [], function(err, results){
+			if(err) return res.send(err);
+			var category = results.rows;
+			res.render('index', {title: 'Categories', categories: category});
+		})
+	})
 });

@@ -4,13 +4,13 @@ var _db;
 module.exports = {
 	connect: function(cb){
 		if(_db)
-			return cb(_db);
+			return cb(null, _db);
 		var client = new pg.Client('postgres://localhost/acme');
 		client.connect(function(err){
 			if(err)
-				return cb(err);
+				return cb(err, null);
 			_db = client;
-			cb(_db);
+			cb(null, _db);
 		});
 	}
 };

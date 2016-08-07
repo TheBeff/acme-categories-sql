@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<link rel='stylesheet' href="/bootstrap/dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<ul class="nav nav-tabs">
+			<li><a href="/">Home</a></li>
+			{% for keys in categories %}
+			<li><a href="/categories/{{ keys.id }}">{{ keys.name }}</a></li>
+			{% endfor %}
+		</ul>
+		<div class="container">
+			<div style="margin-top:10px">
+			{% block content %}
+			Default Content
+			{% endblock %}
+		</div>
+	</body>
+</html>
